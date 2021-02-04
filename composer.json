@@ -1,0 +1,10 @@
+{
+    "name": "azuriom/litebans",
+    "type": "azuriom-plugin",
+    "description": "Plugin Litebans for Azuriom",
+    "autoload": {
+        "psr-4": {
+            "Azuriom\\Plugin\\Litebans\\": "src/"
+        }
+    }
+}

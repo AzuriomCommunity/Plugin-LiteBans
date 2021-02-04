@@ -1,0 +1,14 @@
+{
+    "id": "litebans",
+    "name": "LiteBans",
+    "description": "Plugin Litebans for Azuriom",
+    "version": "1.0.0",
+    "url": "https://azuriom.com",
+    "authors": [
+        "Bryan M."
+    ],
+    "providers": [
+        "\\Azuriom\\Plugin\\Litebans\\Providers\\LitebansServiceProvider",
+        "\\Azuriom\\Plugin\\Litebans\\Providers\\RouteServiceProvider"
+    ]
+}
