@@ -5,106 +5,72 @@ namespace Azuriom\Plugin\Litebans\Models;
 use Azuriom\Models\Traits\HasTablePrefix;
 use Azuriom\Models\Traits\Searchable;
 use Illuminate\Database\Eloquent\Model;
-use Exception;
 
 class History extends Model
 {
-  use HasTablePrefix;
-  use Searchable;
+    use HasTablePrefix;
+    use Searchable;
 
-  /**
-   * The table prefix associated with the model.
-   *
-   * @var string
-   */
-  protected $prefix = 'litebans_';
+    /**
+     * The table prefix associated with the model.
+     *
+     * @var string
+     */
+    protected $prefix = 'litebans_';
 
-  /**
-   * The database table used by the model.
-   *
-   * @var string
-   */
-  protected $table = 'litebans_history';
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'litebans_history';
 
-  protected $connection = 'litebans';
+    protected $connection = 'litebans';
 
-  /**
-   * The attributes that can be search for.
-   *
-   * @var array
-   */
-  protected $searchable = [
-    'name', 'uuid',
-  ];
-
-  public static function getUserHistory()
-  {
-
-    $uuid = request()->input('uuid');
-
-    $result = [
-      'bans' => Bans::where('uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      ),
-      'mutes' => Mutes::where('uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      ),
-      'kicks' => Kicks::where('uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      ),
-      'warnings' => Warnings::where('uuid', $uuid)->paginate(setting('litebans.perpage'))
+    protected $casts = [
+        'date' => 'datetime',
     ];
 
-    return $result;
-  }
-
-  public static function getStaffHistory()
-  {
-
-    $uuid = request()->input('uuid');
-
-    $result = [
-      'bans' => Bans::where('banned_by_uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      ),
-      'mutes' => Mutes::where('banned_by_uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      ),
-      'kicks' => Kicks::where('banned_by_uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      ),
-      'warnings' => Warnings::where('banned_by_uuid', $uuid)->paginate(
-        setting('litebans.perpage')
-      )
+    /**
+     * The attributes that can be search for.
+     *
+     * @var array
+     */
+    protected $searchable = [
+        'name', 'uuid',
     ];
 
-    return $result;
-  }
+    public static function getUserHistory(string $uuid)
+    {
+        return [
+            'bans' => Ban::where('uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            ),
+            'mutes' => Mute::where('uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            ),
+            'kicks' => Kick::where('uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            ),
+            'warnings' => Warning::where('uuid', $uuid)->paginate(setting('litebans.perpage'))
+        ];
+    }
 
-  public static function getHistoryList()
-  {
-    return self::select('*')
-      ->where('uuid', '=', $_GET['uuid'])
-      ->get();
-  }
-
-  public static function getName($uuid)
-  {
-    if ($uuid === null || $uuid === "" || $uuid[0] === '#') return null;
-
-    return self::select('name')
-      ->where('uuid', '=', $uuid)
-      ->first()
-      ->name;
-  }
-
-  public static function getUuid($uuid)
-  {
-    if ($uuid === null || $uuid === "" || $uuid[0] === '#') return null;
-
-    return self::select('uuid')
-      ->where('name', '=', $uuid)
-      ->first()
-      ->uuid;
-  }
+    public static function getStaffHistory(string $uuid)
+    {
+        return [
+            'bans' => Ban::where('banned_by_uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            ),
+            'mutes' => Mute::where('banned_by_uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            ),
+            'kicks' => Kick::where('banned_by_uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            ),
+            'warnings' => Warning::where('banned_by_uuid', $uuid)->paginate(
+                setting('litebans.perpage')
+            )
+        ];
+    }
 }

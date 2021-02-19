@@ -1,4 +1,3 @@
-# Plugin-Litebans
-Litebans Azuriom Plugin
+# Plugin-LiteBans
 
-Add more possibilities soon.
+Display the LiteBans punishments on your website.

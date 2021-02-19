@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kicks')
+@section('title', trans('litebans::messages.navigation.kicks'))
 
 @section('content')
 <div class="container content">
@@ -16,21 +16,21 @@
       </tr>
     </thead>
     <tbody>
-      @forelse ($kicksList as $kicks)
-      @php
-      $time = gettimeofday();
-      $nowtime = $time["sec"] * 1000;
-      @endphp
+      @forelse ($kicks as $kick)
       <tr class="text-nowrap">
-        <td><a href="/litebans/history?uuid={{ $kicks->uuid }}"><img
-              src="https://minotar.net/avatar/{{ Azuriom\Plugin\Litebans\Models\History::getName($kicks->uuid) }}/25"
-              alt="">
-            {{ Azuriom\Plugin\Litebans\Models\History::getName($kicks->uuid) }}</a></td>
-        <td><a href="/litebans/history?uuid={{ $kicks->banned_by_uuid }}&issued=true">{{ $kicks->banned_by_name }}</a>
+        <td>
+          <a href="{{ route('litebans.history', $kick->uuid) }}">
+            <img src="https://minotar.net/avatar/{{ $kick->name }}/25" alt="{{ $kick->name }}">
+            {{ $kick->name }}
+          </a>
         </td>
-        <td class="d-lg-table-cell d-none">{{ $kicks->reason }}</td>
-        <td>{{ \Carbon\Carbon::createFromTimestampMs($kicks->time)->format('d/m/Y à H:i') }}
+        <td>
+          <a href="{{ route('litebans.history.issued', $kick->banned_by_uuid) }}">
+            {{ $kick->banned_by_name }}
+          </a>
         </td>
+        <td class="d-lg-table-cell d-none">{{ $kick->reason }}</td>
+        <td>{{ format_date($kick->time) }}</td>
       </tr>
       @empty
       <tr>
@@ -40,6 +40,6 @@
     </tbody>
   </table>
 
-  {{ $kicksList->appends($_GET)->links() }}
+  {{ $kicks->withQueryString()->links() }}
 </div>
 @endsection

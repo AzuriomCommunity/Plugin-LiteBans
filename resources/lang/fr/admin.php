@@ -1,24 +1,24 @@
 <?php
 
 return [
- 'nav' => [
-  'title' => 'LiteBans',
+    'nav' => [
+        'title' => 'LiteBans',
 
-  'settings' => 'Paramètres',
- ],
+        'settings' => 'Paramètres',
+    ],
 
- 'permission' => 'Voir et modifier les paramètres du plugin LiteBans',
+    'permission' => 'Voir et modifier les paramètres du plugin LiteBans',
 
- 'settings' => [
-  'title' => 'Paramètres du plugin LiteBans',
-  'database-connect' => 'Connexion à la base de données',
-  'other-settings' => 'Autres paramètres',
+    'settings' => [
+        'title' => 'Paramètres du plugin LiteBans',
+        'database-connect' => 'Connexion à la base de données',
+        'other-settings' => 'Autres paramètres',
 
-  'host' => 'Hôte',
-  'port' => 'Port',
-  'database' => 'Base de données',
-  'username' => 'Nom d\'utilisateur',
-  'password' => 'Mot de passe',
-  'perpage' => 'Nombre de sanctions par page',
- ],
+        'host' => 'Hôte',
+        'port' => 'Port',
+        'database' => 'Base de données',
+        'username' => 'Nom d\'utilisateur',
+        'password' => 'Mot de passe',
+        'perpage' => 'Nombre de sanctions par page',
+    ],
 ];

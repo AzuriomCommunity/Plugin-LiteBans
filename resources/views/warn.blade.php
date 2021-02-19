@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Warns')
+@section('title', trans('litebans::messages.navigation.warns'))
 
 @section('content')
 <div class="container content">
@@ -11,35 +11,38 @@
       <tr>
         <th scope="col">{{ trans('litebans::messages.username') }}</th>
         <th scope="col">{{ trans('litebans::messages.staff_warn') }}</th>
-        <th scope="col" class="d-lg-table-cell d-none">{{ trans('litebans::messages.reason') }}</th>
+        <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
         <th scope="col">{{ trans('messages.fields.date') }}</th>
-        <th scope="col" class="d-lg-table-cell d-none">{{ trans('litebans::messages.expires_at') }}</th>
+        <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.expires_at') }}</th>
       </tr>
     </thead>
     <tbody>
-      @forelse ($warnsList as $warns)
-      @php
-      $time = gettimeofday();
-      $nowtime = $time["sec"] * 1000;
-      @endphp
+      @forelse ($warns as $warn)
       <tr class="text-nowrap">
-        <td><a href="/litebans/history?uuid={{ $warns->uuid }}"><img
-              src="https://minotar.net/avatar/{{ Azuriom\Plugin\Litebans\Models\History::getName($warns->uuid) }}/25"
-              alt="">
-            {{ Azuriom\Plugin\Litebans\Models\History::getName($warns->uuid) }}</a></td>
-        <td><a href="/litebans/history?uuid={{ $warns->banned_by_uuid }}&issued=true">{{ $warns->banned_by_name }}</a>
+        <td>
+          <a href="{{ route('litebans.history', $warn->uuid) }}">
+            <img src="https://minotar.net/avatar/{{ $warn->name }}/25" alt="{{ $warn->name }}">
+            {{ $warn->name }}
+          </a>
         </td>
-        <td class="d-lg-table-cell d-none">{{ $warns->reason }}</td>
-        <td>{{ \Carbon\Carbon::createFromTimestampMs($warns->time)->format('d/m/Y à H:i') }}
+        <td>
+          <a href="{{ route('litebans.history.issued', $warn->banned_by_uuid) }}">
+            {{ $warn->banned_by_name }}
+          </a>
         </td>
-        @if(isset($warns->removed_by_name))
-        <td class="d-lg-table-cell d-none">Débanni</td>
-        @elseif($warns->until == "-1")
-        <td class="d-lg-table-cell d-none">Définitif</td>
-        @elseif($nowtime > $warns->until) <td class="d-lg-table-cell d-none">Expiré</td>
-        @else
         <td class="d-lg-table-cell d-none">
-          {{ \Carbon\Carbon::createFromTimestampMs($warns->until)->format('d/m/Y à H:i') }}</td>
+          {{ $warn->reason }}
+        </td>
+        <td>{{ format_date($warn->time) }}</td>
+
+        @if(isset($warn->removed_by_name))
+          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.unbanned') }}</td>
+        @elseif($warn->until === null)
+          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.permanent') }}</td>
+        @elseif($warn->until->isPast())
+          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.expired') }}</td>
+        @else
+          <td class="d-lg-table-cell d-none">{{ format_date($warn->until) }}</td>
         @endif
       </tr>
       @empty
@@ -50,6 +53,6 @@
     </tbody>
   </table>
 
-  {{ $warnsList->appends($_GET)->links() }}
+  {{ $warns->withQueryString()->links() }}
 </div>
 @endsection

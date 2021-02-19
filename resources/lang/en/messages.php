@@ -11,6 +11,7 @@ return [
 
     'title' => 'Punishments',
     'plugin_name' => 'Litebans / Punishments',
+    'history' => 'History',
 
     'username' => 'Pseudo',
     'staff_ban' => 'Ban by',
@@ -24,4 +25,10 @@ return [
 
     'active' => 'Active',
     'finished' => 'Ended',
+    'unbanned' => 'Unbanned',
+    'expired' => 'Expired',
+    'permanent' => 'Permanent',
+
+    'given_punishments' => 'Given punishments',
+    'staff' => 'Staff',
 ];

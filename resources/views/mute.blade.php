@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Mutes')
+@section('title', trans('litebans::messages.navigation.mutes'))
 
 @section('content')
 <div class="container content">
@@ -17,29 +17,29 @@
       </tr>
     </thead>
     <tbody>
-      @forelse ($mutesList as $mutes)
-      @php
-      $time = gettimeofday();
-      $nowtime = $time["sec"] * 1000;
-      @endphp
+      @forelse ($mutes as $mute)
       <tr class="text-nowrap">
-        <td><a href="/litebans/history?uuid={{ $mutes->uuid }}"><img
-              src="https://minotar.net/avatar/{{ Azuriom\Plugin\Litebans\Models\History::getName($mutes->uuid) }}/25"
-              alt="">
-            {{ Azuriom\Plugin\Litebans\Models\History::getName($mutes->uuid) }}</a></td>
-        <td><a href="/litebans/history?uuid={{ $mutes->banned_by_uuid }}&issued=true">{{ $mutes->banned_by_name }}</a>
+        <td>
+          <a href="{{ route('litebans.history', $mute->uuid) }}">
+            <img src="https://minotar.net/avatar/{{ $mute->name }}/25" alt="{{ $mute->name }}">
+            {{ $mute->name }}
+          </a>
         </td>
-        <td class="d-lg-table-cell d-none">{{ $mutes->reason }}</td>
-        <td>{{ \Carbon\Carbon::createFromTimestampMs($mutes->time)->format('d/m/Y à H:i') }}
+        <td>
+          <a href="{{ route('litebans.history.issued', $mute->banned_by_uuid) }}">
+            {{ $mute->banned_by_name }}
+          </a>
         </td>
-        @if(isset($mutes->removed_by_name))
-        <td class="d-lg-table-cell d-none">Débanni</td>
-        @elseif($mutes->until == "-1")
-        <td class="d-lg-table-cell d-none">Définitif</td>
-        @elseif($nowtime > $mutes->until) <td class="d-lg-table-cell d-none">Expiré</td>
+        <td class="d-lg-table-cell d-none">{{ $mute->reason }}</td>
+        <td>{{ format_date($mute->time) }}</td>
+        @if(isset($mute->removed_by_name))
+          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.unbanned') }}</td>
+        @elseif($mute->until === null)
+          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.permanent') }}</td>
+        @elseif($mute->until->isPast())
+          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.expired') }}</td>
         @else
-        <td class="d-lg-table-cell d-none">
-          {{ \Carbon\Carbon::createFromTimestampMs($mutes->until)->format('d/m/Y à H:i') }}</td>
+          <td class="d-lg-table-cell d-none">{{ format_date($mute->until) }}</td>
         @endif
       </tr>
       @empty
@@ -50,6 +50,6 @@
     </tbody>
   </table>
 
-  {{ $mutesList->appends($_GET)->links() }}
+  {{ $mutes->withQueryString()->links() }}
 </div>
 @endsection

@@ -1,7 +1,7 @@
 {
     "id": "litebans",
     "name": "LiteBans",
-    "description": "Plugin Litebans for Azuriom",
+    "description": "Display the LiteBans punishments on your website.",
     "version": "1.0.0",
     "url": "https://azuriom.com",
     "authors": [
