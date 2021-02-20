@@ -14,7 +14,7 @@ class LitebansController extends Controller
     public function __construct()
     {
         if (config()->get('database.connections.litebans') === null) {
-            abort(404, setting('litebans.host') === null);
+            abort_if(setting('litebans.host') === null, 404);
 
             config()->set('database.connections.litebans', [
                 'driver' => 'mysql',
