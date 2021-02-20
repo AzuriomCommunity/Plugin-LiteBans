@@ -40,6 +40,7 @@ class SettingsController extends Controller
             'litebans.host' => $validated['host'],
             'litebans.port' => $validated['port'],
             'litebans.database' => $validated['database'],
+            'litebans.username' => $validated['username'],
             'litebans.password' => $validated['password'],
             'litebans.perpage' => $validated['perpage'],
         ]);
