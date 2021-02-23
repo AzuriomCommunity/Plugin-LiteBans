@@ -19,13 +19,13 @@
       @forelse ($kicks as $kick)
       <tr class="text-nowrap">
         <td>
-          <a href="{{ route('litebans.history', $kick->uuid) }}">
-            <img src="https://minotar.net/avatar/{{ $kick->name }}/25" alt="{{ $kick->name }}">
+          <a href="{{ route('litebans.history', $kick->name) }}">
+            <img src="https://cravatar.eu/avatar/{{ $kick->name }}/25" alt="{{ $kick->name }}">
             {{ $kick->name }}
           </a>
         </td>
         <td>
-          <a href="{{ route('litebans.history.issued', $kick->banned_by_uuid) }}">
+          <a href="{{ route('litebans.history.issued', $kick->banned_by_name) }}">
             {{ $kick->banned_by_name }}
           </a>
         </td>

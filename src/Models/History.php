@@ -37,7 +37,7 @@ class History extends Model
      * @var array
      */
     protected $searchable = [
-        'name', 'uuid',
+        'name',
     ];
 
     public static function getUserHistory(string $uuid)

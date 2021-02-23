@@ -12,11 +12,13 @@ class LitebansHistoryController extends LitebansController
      * @param string $uuid
      * @return \Illuminate\Http\Response
      */
-    public function index(string $uuid)
+    public function index(string $name)
     {
-        $name = History::where('uuid', $uuid)->value('name');
+        $uuid = History::where('name', $name)->value('uuid');
 
-        abort_if($name === null, 404);
+        if ($uuid === null) {
+            return back()->with('error-search', "Cet utilisateur n'existe pas");
+        }
 
         $user = [
             'name' => $name,
@@ -27,11 +29,13 @@ class LitebansHistoryController extends LitebansController
         return view('litebans::history', array_merge(History::getUserHistory($uuid), $user));
     }
 
-    public function issued(string $uuid)
+    public function issued(string $name)
     {
-        $name = History::where('uuid', $uuid)->value('name');
+        $uuid = History::where('name', $name)->value('uuid');
 
-        abort_if($name === null, 404);
+        if ($uuid === null) {
+            return back()->with('error-search', "Cet utilisateur n'existe pas");
+        }
 
         $user = [
             'name' => $name,

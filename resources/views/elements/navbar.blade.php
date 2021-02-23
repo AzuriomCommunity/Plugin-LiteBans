@@ -25,11 +25,21 @@
             ({{ $warnsCount }})</a>
         </li>
       </ul>
-      {{-- <form class="form-inline my-2 my-lg-0" action="{{URL::to('/litebans/history')}}" method="GET" role="search">
-          <input class="form-control mr-sm-2" type="search"
-            placeholder="{{ trans('litebans::messages.navigation.search') }}" aria-label="Search" name="uuid">
-          <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-        </form> --}}
+      <form class="form-inline my-2 my-lg-0" action="{{ route('litebans.search') }}" method="GET">
+        <input class="form-control mr-sm-2" type="text"
+          placeholder="{{ trans('litebans::messages.navigation.search') }}" aria-label="Search" name="q">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      </form>
     </div>
   </div>
 </nav>
+
+@if(session()->has('error-search'))
+<div class="alert alert-danger alert-search alert-dismissible fade show mt-3" role="alert">
+  <i class="fas fa-exclamation-circle"></i>
+  {{ session()->get('error-search') }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>
+@endif

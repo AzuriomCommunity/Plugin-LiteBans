@@ -20,9 +20,6 @@ Route::get('/', 'LitebansHomeController@index')->name('index');
 Route::get('/mutes', 'LitebansMuteController@index')->name('mute');
 Route::get('/kicks', 'LitebansKickController@index')->name('kick');
 Route::get('/warns', 'LitebansWarnController@index')->name('warn');
-Route::get('/history/{uuid}', 'LitebansHistoryController@index')->name('history');
-Route::get('/history/{uuid}/staff', 'LitebansHistoryController@issued')->name('history.issued');
-
-/*Route::get('/history', function (Request $request) {
- return History::connection('litebans')->search($request->search)->get();
-});*/
+Route::get('/history/{name}', 'LitebansHistoryController@index')->name('history');
+Route::get('/history/{name}/staff', 'LitebansHistoryController@issued')->name('history.issued');
+Route::get('/search', 'LitebansController@search')->name('search');

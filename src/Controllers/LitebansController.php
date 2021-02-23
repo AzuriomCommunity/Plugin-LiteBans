@@ -7,7 +7,9 @@ use Azuriom\Plugin\Litebans\Models\Ban;
 use Azuriom\Plugin\Litebans\Models\Kick;
 use Azuriom\Plugin\Litebans\Models\Mute;
 use Azuriom\Plugin\Litebans\Models\Warning;
+use Azuriom\Plugin\Litebans\Models\History;
 use Illuminate\Support\Facades\View;
+use Illuminate\Http\Request;
 
 class LitebansController extends Controller
 {
@@ -36,5 +38,20 @@ class LitebansController extends Controller
             'warnsCount' => Warning::count(),
             'kicksCount' => Kick::count(),
         ]);
+    }
+
+
+    public function search(Request $request)
+    {
+        $key = $request->input('q');
+
+        if ($key != null) {
+            return redirect()->route('litebans.history', $key);
+        }
+        return back()->with('error-search', "Cet utilisateur n'existe pas !");
+
+        /*$search = History::select('uuid')
+            ->where('name', 'like', "%{$key}%")
+            ->get();*/
     }
 }

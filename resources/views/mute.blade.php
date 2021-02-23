@@ -20,26 +20,26 @@
       @forelse ($mutes as $mute)
       <tr class="text-nowrap">
         <td>
-          <a href="{{ route('litebans.history', $mute->uuid) }}">
-            <img src="https://minotar.net/avatar/{{ $mute->name }}/25" alt="{{ $mute->name }}">
+          <a href="{{ route('litebans.history', $mute->name) }}">
+            <img src="https://cravatar.eu/avatar/{{ $mute->name }}/25" alt="{{ $mute->name }}">
             {{ $mute->name }}
           </a>
         </td>
         <td>
-          <a href="{{ route('litebans.history.issued', $mute->banned_by_uuid) }}">
+          <a href="{{ route('litebans.history.issued', $mute->banned_by_name) }}">
             {{ $mute->banned_by_name }}
           </a>
         </td>
         <td class="d-lg-table-cell d-none">{{ $mute->reason }}</td>
         <td>{{ format_date($mute->time) }}</td>
         @if(isset($mute->removed_by_name))
-          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.unbanned') }}</td>
+        <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.unbanned') }}</td>
         @elseif($mute->until === null)
-          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.permanent') }}</td>
+        <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.permanent') }}</td>
         @elseif($mute->until->isPast())
-          <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.expired') }}</td>
+        <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.expired') }}</td>
         @else
-          <td class="d-lg-table-cell d-none">{{ format_date($mute->until) }}</td>
+        <td class="d-lg-table-cell d-none">{{ format_date($mute->until) }}</td>
         @endif
       </tr>
       @empty
