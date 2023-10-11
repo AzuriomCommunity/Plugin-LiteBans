@@ -8,6 +8,7 @@ use Azuriom\Plugin\Litebans\Models\Kick;
 use Azuriom\Plugin\Litebans\Models\Mute;
 use Azuriom\Plugin\Litebans\Models\Warning;
 use Azuriom\Plugin\Litebans\Models\History;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 
@@ -45,13 +46,18 @@ class LitebansController extends Controller
     {
         $key = $request->input('q');
 
-        if ($key != null) {
+        if ($key) {
             return redirect()->route('litebans.history', $key);
         }
-        return back()->with('error-search', "Cet utilisateur n'existe pas !");
+        return back()->with('error', "Cet utilisateur n'existe pas !");
 
         /*$search = History::select('uuid')
             ->where('name', 'like', "%{$key}%")
             ->get();*/
+    }
+
+    public function profile()
+    {
+        return redirect()->route('litebans.history', Auth::user()->name);
     }
 }

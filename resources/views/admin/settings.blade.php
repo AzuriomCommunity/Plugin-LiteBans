@@ -11,31 +11,31 @@
             </div>
             <div class="card-body">
 
-                <div class="form-group">
-                    <label for="host">{{ trans('litebans::admin.settings.host') }}</label>
+                <div class="mb-3">
+                    <label for="host" class="form-label">{{ trans('litebans::admin.settings.host') }}</label>
                     <input class="form-control" id="host" name="host" value="{{ $host }}" required="required">
                 </div>
 
-                <div class="form-group">
-                    <label for="port">{{ trans('litebans::admin.settings.port') }}</label>
+                <div class="mb-3">
+                    <label for="port" class="form-label">{{ trans('litebans::admin.settings.port') }}</label>
                     <input class="form-control" id="port" name="port" value="{{ $port }}" required="required">
                 </div>
 
-                <div class="form-group">
-                    <label for="database">{{ trans('litebans::admin.settings.database') }}</label>
+                <div class="mb-3">
+                    <label for="database" class="form-label">{{ trans('litebans::admin.settings.database') }}</label>
                     <input class="form-control" id="database" name="database" value="{{ $database }}"
                            required="required">
                 </div>
 
-                <div class="form-group">
-                    <label for="username">{{ trans('litebans::admin.settings.username') }}</label>
+                <div class="mb-3">
+                    <label for="username" class="form-label">{{ trans('litebans::admin.settings.username') }}</label>
                     <input class="form-control" id="username" name="username" value="{{ $username }}"
                            required="required">
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="password">{{ trans('litebans::admin.settings.password') }}</label>
-                    <input class="form-control" id="password" name="password" value="{{ $password }}"
+                    <input class="form-control" id="password" name="password" type="password" value="{{ $password }}"
                            required="required">
                 </div>
             </div>
@@ -46,8 +46,8 @@
                 <h6 class="m-0 font-weight-bold text-primary">{{ trans('litebans::admin.settings.other-settings') }}</h6>
             </div>
             <div class="card-body">
-                <div class="form-group">
-                    <label for="perpage">{{ trans('litebans::admin.settings.perpage') }}</label>
+                <div class="mb-3">
+                    <label for="perpage" class="form-label">{{ trans('litebans::admin.settings.perpage') }}</label>
                     <input class="form-control" id="perpage" name="perpage" value="{{ $perpage }}" required="required">
                 </div>
 

@@ -17,7 +17,7 @@ class LitebansHistoryController extends LitebansController
         $uuid = History::where('name', $name)->value('uuid');
 
         if ($uuid === null) {
-            return back()->with('error-search', "Cet utilisateur n'existe pas");
+            return back()->with('error', "Cet utilisateur n'existe pas");
         }
 
         $user = [
@@ -34,7 +34,7 @@ class LitebansHistoryController extends LitebansController
         $uuid = History::where('name', $name)->value('uuid');
 
         if ($uuid === null) {
-            return back()->with('error-search', "Cet utilisateur n'existe pas");
+            return back()->with('error', "Cet utilisateur n'existe pas");
         }
 
         $user = [

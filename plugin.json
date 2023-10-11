@@ -2,13 +2,15 @@
     "id": "litebans",
     "name": "LiteBans",
     "description": "Display the LiteBans punishments on your website.",
-    "version": "1.0.2",
-    "url": "https://azuriom.com",
+    "version": "1.0.7",
+    "url": "https://market.azuriom.com/resources/99",
     "authors": [
-        "Bryan M."
+        "Elikill58", "Bryan M."
     ],
+    "azuriom_api": "1.0.0",
     "providers": [
         "\\Azuriom\\Plugin\\Litebans\\Providers\\LitebansServiceProvider",
         "\\Azuriom\\Plugin\\Litebans\\Providers\\RouteServiceProvider"
-    ]
+    ],
+    "apiId": 99
 }

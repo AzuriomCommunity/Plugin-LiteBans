@@ -8,39 +8,6 @@ use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 
 class LitebansServiceProvider extends BasePluginServiceProvider
 {
-    /**
-     * The plugin's global HTTP middleware stack.
-     *
-     * @var array
-     */
-    protected $middleware = [
-        // \Azuriom\Plugin\Litebans\Middleware\ExampleMiddleware::class,
-    ];
-
-    /**
-     * The plugin's route middleware groups.
-     *
-     * @var array
-     */
-    protected $middlewareGroups = [];
-
-    /**
-     * The plugin's route middleware.
-     *
-     * @var array
-     */
-    protected $routeMiddleware = [
-        // 'example' => \Azuriom\Plugin\Litebans\Middleware\ExampleRouteMiddleware::class,
-    ];
-
-    /**
-     * The policy mappings for this plugin.
-     *
-     * @var array
-     */
-    protected $policies = [
-        // User::class => UserPolicy::class,
-    ];
 
     /**
      * Register any plugin services.
@@ -103,8 +70,8 @@ class LitebansServiceProvider extends BasePluginServiceProvider
     {
         return [
             'litebans' => [
-                'name' => 'litebans::admin.nav.title',
-                'icon' => 'fas fa-hammer',
+                'name' => trans('litebans::admin.nav.title'),
+                'icon' => 'bi bi-slash-circle',
                 'route' => 'litebans.admin.settings',
                 'permission' => 'litebans.admin'
             ],
@@ -118,8 +85,6 @@ class LitebansServiceProvider extends BasePluginServiceProvider
      */
     protected function userNavigation()
     {
-        return [
-            //
-        ];
+
     }
 }

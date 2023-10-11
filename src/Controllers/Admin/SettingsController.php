@@ -45,6 +45,6 @@ class SettingsController extends Controller
             'litebans.perpage' => $validated['perpage'],
         ]);
 
-        return redirect()->route('litebans.admin.settings')->with('success', trans('admin.settings.status.updated'));
+        return redirect()->route('litebans.admin.settings')->with('success', trans(trans('admin.settings.updated')));
     }
 }

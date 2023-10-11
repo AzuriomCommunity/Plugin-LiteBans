@@ -21,7 +21,7 @@
       <tr class="text-nowrap">
         <td>
           <a href="{{ route('litebans.history', $warn->name) }}">
-            <img src="https://cravatar.eu/avatar/{{ $warn->name }}/25" alt="{{ $warn->name }}">
+            <img src="https://mc-heads.net/avatar/{{ $warn->name }}/25" alt="{{ $warn->name }}">
             {{ $warn->name }}
           </a>
         </td>

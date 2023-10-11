@@ -35,7 +35,7 @@ class Ban extends Model
 
     public function getNameAttribute()
     {
-        return $this->history->name;
+        return $this->history->name ?? "?";
     }
 
     public function history()
