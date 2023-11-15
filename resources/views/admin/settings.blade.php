@@ -38,6 +38,12 @@
                     <input class="form-control" id="password" name="password" type="password" value="{{ $password }}"
                            required="required">
                 </div>
+
+                <div class="mb-3">
+                    <label for="prefix">{{ trans('litebans::admin.settings.prefix') }}</label>
+                    <input class="form-control" id="prefix" name="prefix" type="prefix" value="{{ $prefix ?? 'litebans_' }}"
+                           required="required">
+                </div>
             </div>
         </div>
 

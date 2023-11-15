@@ -12,18 +12,11 @@ class History extends Model
     use Searchable;
 
     /**
-     * The table prefix associated with the model.
-     *
-     * @var string
-     */
-    protected $prefix = 'litebans_';
-
-    /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'litebans_history';
+    protected $table = 'bans_history';
 
     protected $connection = 'litebans';
 
@@ -39,6 +32,12 @@ class History extends Model
     protected $searchable = [
         'name',
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->prefix = setting('litebans.prefix', 'litebans_');
+    }
 
     public static function getUserHistory(string $uuid)
     {

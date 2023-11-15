@@ -20,5 +20,6 @@ return [
         'username' => 'Nom d\'utilisateur',
         'password' => 'Mot de passe',
         'perpage' => 'Nombre de sanctions par page',
+        'prefix' => 'Table prefix',
     ],
 ];
