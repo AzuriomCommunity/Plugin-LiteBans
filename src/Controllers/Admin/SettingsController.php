@@ -22,6 +22,7 @@ class SettingsController extends Controller
             'username' => setting('litebans.username'),
             'password' => setting('litebans.password'),
             'perpage' => setting('litebans.perpage'),
+            'prefix' => setting('litebans.prefix', 'litebans_'),
         ]);
     }
 
@@ -34,6 +35,7 @@ class SettingsController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
             'perpage' => ['required', 'integer', 'between:1,100'],
+            'prefix' => ['required', 'string', 'max:255'],
         ]);
 
         Setting::updateSettings([
@@ -42,6 +44,7 @@ class SettingsController extends Controller
             'litebans.database' => $validated['database'],
             'litebans.username' => $validated['username'],
             'litebans.password' => $validated['password'],
+            'litebans.prefix' => $validated['prefix'] ?? 'litebans_',
             'litebans.perpage' => $validated['perpage'],
         ]);
 

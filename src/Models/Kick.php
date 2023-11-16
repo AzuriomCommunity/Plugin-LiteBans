@@ -10,13 +10,6 @@ class Kick extends Model
 {
     use HasTablePrefix;
 
-    /**
-     * The table prefix associated with the model.
-     *
-     * @var string
-     */
-    protected $prefix = 'litebans_';
-
     protected $connection = 'litebans';
 
     protected $casts = [
@@ -31,6 +24,12 @@ class Kick extends Model
     protected $with = [
         'history',
     ];
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->prefix = setting('litebans.prefix', 'litebans_');
+    }
 
     public function getNameAttribute()
     {
