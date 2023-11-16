@@ -8,15 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class History extends Model
 {
-    use HasTablePrefix;
     use Searchable;
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'bans_history';
 
     protected $connection = 'litebans';
 
@@ -37,6 +29,15 @@ class History extends Model
     {
         parent::__construct();
         $this->prefix = setting('litebans.prefix', 'litebans_');
+    }
+
+    public function getTable(): string
+    {
+        if ($this->table === null) {
+            $this->setTable($this->prefix . "history");
+        }
+
+        return $this->table;
     }
 
     public static function getUserHistory(string $uuid)
