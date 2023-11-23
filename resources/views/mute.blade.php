@@ -33,7 +33,7 @@
         <td class="d-lg-table-cell d-none">{{ $mute->reason }}</td>
         <td>{{ format_date($mute->time) }}</td>
         @if(isset($mute->removed_by_name))
-        <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.unbanned') }}</td>
+        <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.unmuted') }}</td>
         @elseif($mute->until === null)
         <td class="d-lg-table-cell d-none">{{ trans('litebans::messages.permanent') }}</td>
         @elseif($mute->until->isPast())

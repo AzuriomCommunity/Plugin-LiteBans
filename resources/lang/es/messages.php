@@ -26,6 +26,7 @@ return [
     'active' => 'Activo',
     'finished' => 'Finalizado',
     'unbanned' => 'Sin Sanción',
+    'unmuted' => 'Unmuted',
     'expired' => 'Caducado',
     'permanent' => 'Permanente',
 

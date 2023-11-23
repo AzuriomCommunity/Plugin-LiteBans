@@ -26,6 +26,7 @@ return [
     'active' => 'Активний',
     'finished' => 'Завершено',
     'unbanned' => 'Розбанено',
+    'unmuted' => 'Unmuted',
     'expired' => 'Термін дії минув',
     'permanent' => 'Постійний',
 
