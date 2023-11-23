@@ -21,5 +21,11 @@ return [
         'password' => 'Mot de passe',
         'perpage' => 'Nombre de sanctions par page',
         'prefix' => 'Table prefix',
+        'features' => [
+            'title' => 'Fonctionnalité activées',
+            'kicks' => 'Kicks activé',
+            'mutes' => 'Mutes activé',
+            'warns' => 'Avertissements activé'
+        ]
     ],
 ];

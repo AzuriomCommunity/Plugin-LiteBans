@@ -54,7 +54,20 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label for="perpage" class="form-label">{{ trans('litebans::admin.settings.perpage') }}</label>
-                    <input class="form-control" id="perpage" name="perpage" value="{{ $perpage }}" required="required">
+                    <input class="form-control" type="text" id="perpage" name="perpage" value="{{ $perpage }}" required="required">
+                </div>
+                {{ trans('litebans::admin.settings.features.title') }}
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="mutes_enabled" name="mutes_enabled" {{ $mutes_enabled ? 'checked' : '' }}>
+                    <label class="form-check-label" for="mutes_enabled">{{ trans('litebans::admin.settings.features.mutes') }}</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="kicks_enabled" name="kicks_enabled" {{ $kicks_enabled ? 'checked' : '' }}>
+                    <label class="form-check-label" for="kicks_enabled">{{ trans('litebans::admin.settings.features.kicks') }}</label>
+                </div>
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="warns_enabled" name="warns_enabled" {{ $warns_enabled ? 'checked' : '' }}>
+                    <label class="form-check-label" for="warns_enabled">{{ trans('litebans::admin.settings.features.warns') }}</label>
                 </div>
 
                 <button type="submit" class="btn btn-primary">

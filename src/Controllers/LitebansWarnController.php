@@ -13,6 +13,7 @@ class LitebansWarnController extends LitebansController
      */
     public function index()
     {
+        abort_if(setting('litebans.warns_enabled') == false, 404);
         return view('litebans::warn', ['warns' => Warning::getWarningsList()]);
     }
 }

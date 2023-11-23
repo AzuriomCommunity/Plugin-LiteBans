@@ -23,6 +23,9 @@ class SettingsController extends Controller
             'password' => setting('litebans.password'),
             'perpage' => setting('litebans.perpage'),
             'prefix' => setting('litebans.prefix', 'litebans_'),
+            'mutes_enabled' => setting('litebans.mutes_enabled', true),
+            'kicks_enabled' => setting('litebans.kicks_enabled', true),
+            'warns_enabled' => setting('litebans.warns_enabled', true),
         ]);
     }
 
@@ -36,6 +39,9 @@ class SettingsController extends Controller
             'password' => ['required', 'string', 'max:255'],
             'perpage' => ['required', 'integer', 'between:1,100'],
             'prefix' => ['required', 'string', 'max:255'],
+            'mutes_enabled' => ['nullable'],
+            'kicks_enabled' => ['nullable'],
+            'warns_enabled' => ['nullable'],
         ]);
 
         Setting::updateSettings([
@@ -46,6 +52,9 @@ class SettingsController extends Controller
             'litebans.password' => $validated['password'],
             'litebans.prefix' => $validated['prefix'] ?? 'litebans_',
             'litebans.perpage' => $validated['perpage'],
+            'litebans.mutes_enabled' => $request->has('mutes_enabled'),
+            'litebans.kicks_enabled' => $request->has('kicks_enabled'),
+            'litebans.warns_enabled' => $request->has('warns_enabled'),
         ]);
 
         return redirect()->route('litebans.admin.settings')->with('success', trans(trans('admin.settings.updated')));

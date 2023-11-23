@@ -6,10 +6,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item {{ request()->routeIs('litebans.index') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.index') }}">{{ trans('litebans::messages.navigation.bans') }}({{ $bansCount }})</a></li>
-            <li class="nav-item {{ request()->routeIs('litebans.mute') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.mute') }}">{{ trans('litebans::messages.navigation.mutes') }}({{ $mutesCount }})</a></li>
-            <li class="nav-item {{ request()->routeIs('litebans.kick') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.kick') }}">{{ trans('litebans::messages.navigation.kicks') }}({{ $kicksCount }})</a></li>
-            <li class="nav-item {{ request()->routeIs('litebans.warn') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.warn') }}">{{ trans('litebans::messages.navigation.warns') }}({{ $warnsCount }})</a></li>
+            <li class="nav-item {{ request()->routeIs('litebans.index') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.index') }}">{{ trans('litebans::messages.navigation.bans') }} ({{ $bansCount }})</a></li>
+            @if(setting('litebans.mutes_enabled', true))
+            <li class="nav-item {{ request()->routeIs('litebans.mute') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.mute') }}">{{ trans('litebans::messages.navigation.mutes') }} ({{ $mutesCount }})</a></li>
+            @endif
+            @if(setting('litebans.kicks_enabled', true))
+            <li class="nav-item {{ request()->routeIs('litebans.kick') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.kick') }}">{{ trans('litebans::messages.navigation.kicks') }} ({{ $kicksCount }})</a></li>
+            @endif
+            @if(setting('litebans.warns_enabled', true))
+            <li class="nav-item {{ request()->routeIs('litebans.warn') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.warn') }}">{{ trans('litebans::messages.navigation.warns') }} ({{ $warnsCount }})</a></li>
+            @endif
       </ul>
       </form>
     </div>
