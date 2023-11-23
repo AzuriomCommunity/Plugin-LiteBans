@@ -89,8 +89,7 @@
                                 </td>
                                 @else
                                 <td>
-                                    <img src="https://mc-heads.net/avatar/{{ $item->banned_by_name }}/25"
-                                        alt="{{ $item->banned_by_name }}">
+                                    <img src="https://mc-heads.net/avatar/{{ $item->banned_by_name }}/25" alt="{{ $item->banned_by_name }}">
                                     {{ $item->banned_by_name }}
                                 </td>
                                 @endif

@@ -26,6 +26,7 @@
         </td>
         <td>
           <a href="{{ route('litebans.history.issued', $kick->banned_by_name) }}">
+            <img src="https://mc-heads.net/avatar/{{ $kick->banned_by_name }}/25" alt="{{ $kick->banned_by_name }}">
             {{ $kick->banned_by_name }}
           </a>
         </td>
