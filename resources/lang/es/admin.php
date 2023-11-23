@@ -21,5 +21,11 @@ return [
         'password' => 'Contraseña',
         'perpage' => 'Sanciones por Página',
         'prefix' => 'Prefijo de la Tabla',
+        'features' => [
+            'title' => 'Features enabled',
+            'kicks' => 'Kicks enabled',
+            'mutes' => 'Mutes enabled',
+            'warns' => 'Warns enabled'
+        ]
     ],
 ];

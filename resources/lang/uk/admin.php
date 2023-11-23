@@ -21,5 +21,11 @@ return [
         'password' => 'Пароль',
         'perpage' => 'Покарання на сторінці',
         'prefix' => 'Префікс таблиці',
+        'features' => [
+            'title' => 'Features enabled',
+            'kicks' => 'Kicks enabled',
+            'mutes' => 'Mutes enabled',
+            'warns' => 'Warns enabled'
+        ]
     ],
 ];

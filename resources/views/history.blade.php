@@ -125,7 +125,7 @@
                                 <td class="d-lg-table-cell">{{ $item->reason }}</td>
                                 <td>{{ format_date($item->time) }}</td>
                                 @if(isset($item->removed_by_name))
-                                    <td class="d-lg-table-cell">{{ trans('litebans::messages.unbanned') }}</td>
+                                    <td class="d-lg-table-cell">{{ trans('litebans::messages.unmuted') }}</td>
                                 @elseif($item->until === null)
                                     <td class="d-lg-table-cell">{{ trans('litebans::messages.permanent') }}</td>
                                 @elseif($item->until->isPast())
