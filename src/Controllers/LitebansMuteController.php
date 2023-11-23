@@ -13,7 +13,7 @@ class LitebansMuteController extends LitebansController
      */
     public function index()
     {
-        abort_if(setting('litebans.mutes_enabled') == false, 404);
+        abort_if(setting('litebans.mutes_enabled', true) == false, 404);
         return view('litebans::mute', ['mutes' => Mute::getMutesList()]);
     }
 }

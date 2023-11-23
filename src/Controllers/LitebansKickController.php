@@ -13,7 +13,7 @@ class LitebansKickController extends LitebansController
      */
     public function index()
     {
-        abort_if(setting('litebans.kicks_enabled') == false, 404);
+        abort_if(setting('litebans.kicks_enabled', true) == false, 404);
         return view('litebans::kick', ['kicks' => Kick::getKicksList()]);
     }
 }
