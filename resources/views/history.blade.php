@@ -32,18 +32,24 @@
                         aria-expanded="true" aria-controls="bans">{{ trans('litebans::messages.navigation.bans') }}
                         ({{ $bans->count() }})
                     </div>
+                    @if(setting('litebans.mutes_enabled', true))
                     <div class="btn-mutes btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#mutes"
                         aria-expanded="true" aria-controls="mutes">{{ trans('litebans::messages.navigation.mutes') }}
                         ({{ $mutes->count() }})
                     </div>
+                    @endif
+                    @if(setting('litebans.kicks_enabled', true))
                     <div class="btn-kicks btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#kicks"
                         aria-expanded="true" aria-controls="kicks">{{ trans('litebans::messages.navigation.kicks') }}
                         ({{ $kicks->count() }})
                     </div>
+                    @endif
+                    @if(setting('litebans.warns_enabled', true))
                     <div class="btn-mutes btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#warns"
                         aria-expanded="true" aria-controls="warns">{{ trans('litebans::messages.navigation.warns') }}
                         ({{ $warnings->count() }})
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -100,14 +106,14 @@
                                 @elseif($item->until === null)
                                 <td class="d-lg-table-cell">{{ trans('litebans::messages.permanent') }}</td>
                                 @elseif($item->until->isPast())
-                                <td class="d-lg-table-cell">{{ trans('litebans::messages.expired') }}</td>
+                                <td class="d-lg-table-cell">{{ format_date($item->until) . " (" .trans('litebans::messages.expired') . ")" }}</td>
                                 @else
                                 <td class="d-lg-table-cell">{{ format_date($item->until) }}</td>
                                 @endif
                             </tr>
                         @empty
                         @endforelse
-                        @forelse ($mutes as $item)
+                        @forelse ((setting('litebans.mutes_enabled', true) ? $mutes : []) as $item)
                             <tr class="text-nowrap">
                                 <td><span class="badge badge-warning text-uppercase">Mute</span></td>
                                 @if ($issued)
@@ -129,7 +135,7 @@
                                 @elseif($item->until === null)
                                     <td class="d-lg-table-cell">{{ trans('litebans::messages.permanent') }}</td>
                                 @elseif($item->until->isPast())
-                                    <td class="d-lg-table-cell">{{ trans('litebans::messages.expired') }}</td>
+                                    <td class="d-lg-table-cell">{{ format_date($item->until) . " (" .trans('litebans::messages.expired') . ")" }}</td>
                                 @else
                                     <td class="d-lg-table-cell">
                                         {{ format_date($item->until) }}</td>
@@ -137,7 +143,7 @@
                             </tr>
                         @empty
                         @endforelse
-                        @forelse ($kicks as $item)
+                        @forelse ((setting('litebans.kicks_enabled', true) ? $kicks : []) as $item)
                             <tr class="text-nowrap">
                                 <td><span class="badge badge-info">Kick</span></td>
                                 @if ($issued)
@@ -157,7 +163,7 @@
                             </tr>
                         @empty
                         @endforelse
-                        @forelse ($warnings as $item)
+                        @forelse ((setting('litebans.warns_enabled', true) ? $warnings : []) as $item)
                             <tr class="text-nowrap">
                                 <td><span class="badge badge-info text-uppercase">Warn</span></td>
                                 @if ($issued)
@@ -179,7 +185,7 @@
                                 @elseif($item->until === null)
                                     <td class="d-lg-table-cell">{{ trans('litebans::messages.permanent') }}</td>
                                 @elseif($item->until->isPast())
-                                    <td class="d-lg-table-cell">{{ trans('litebans::messages.expired') }}</td>
+                                    <td class="d-lg-table-cell">{{ format_date($item->until) . " (" .trans('litebans::messages.expired') . ")" }}</td>
                                 @else
                                     <td class="d-lg-table-cell">
                                         {{ format_date($item->until) }}
