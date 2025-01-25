@@ -51,9 +51,13 @@ class History extends Model
         $perPage = setting('litebans.perpage');
         return [
             "bans" => Ban::where($key, $uuid)->paginate($perPage),
+            "bans_count" => Ban::where($key, $uuid)->count(),
             "kicks" => Kick::where($key, $uuid)->paginate($perPage),
+            "kicks_count" => Kick::where($key, $uuid)->count(),
             "mutes" => Mute::where($key, $uuid)->paginate($perPage),
+            "mutes_count" => Mute::where($key, $uuid)->count(),
             "warnings" => Warning::where($key, $uuid)->paginate($perPage),
+            "warnings_count" => Warning::where($key, $uuid)->count()
         ];
     }
 }

@@ -30,24 +30,24 @@
                 <div class="buttons">
                     <div class="btn-bans btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#bans"
                         aria-expanded="true" aria-controls="bans">{{ trans('litebans::messages.navigation.bans') }}
-                        ({{ $bans->count() }})
+                        ({{ $bans_count }})
                     </div>
                     @if(setting('litebans.mutes_enabled', true))
                     <div class="btn-mutes btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#mutes"
                         aria-expanded="true" aria-controls="mutes">{{ trans('litebans::messages.navigation.mutes') }}
-                        ({{ $mutes->count() }})
+                        ({{ $mutes_count }})
                     </div>
                     @endif
                     @if(setting('litebans.kicks_enabled', true))
                     <div class="btn-kicks btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#kicks"
                         aria-expanded="true" aria-controls="kicks">{{ trans('litebans::messages.navigation.kicks') }}
-                        ({{ $kicks->count() }})
+                        ({{ $kicks_count }})
                     </div>
                     @endif
                     @if(setting('litebans.warns_enabled', true))
                     <div class="btn-mutes btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#warns"
                         aria-expanded="true" aria-controls="warns">{{ trans('litebans::messages.navigation.warns') }}
-                        ({{ $warnings->count() }})
+                        ({{ $warnings_count }})
                     </div>
                     @endif
                 </div>
