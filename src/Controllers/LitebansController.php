@@ -44,8 +44,8 @@ class LitebansController extends Controller
 
     public function search(Request $request)
     {
-        $key = $request->input('q');
-
+        $key = $request->input('search');
+        
         if ($key) {
             return redirect()->route('litebans.history', $key);
         }

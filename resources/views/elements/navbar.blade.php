@@ -5,7 +5,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav me-auto">
             <li class="nav-item {{ request()->routeIs('litebans.index') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.index') }}">{{ trans('litebans::messages.navigation.bans') }} ({{ $bansCount }})</a></li>
             @if(setting('litebans.mutes_enabled', true))
             <li class="nav-item {{ request()->routeIs('litebans.mute') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.mute') }}">{{ trans('litebans::messages.navigation.mutes') }} ({{ $mutesCount }})</a></li>
@@ -16,8 +16,11 @@
             @if(setting('litebans.warns_enabled', true))
             <li class="nav-item {{ request()->routeIs('litebans.warn') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.warn') }}">{{ trans('litebans::messages.navigation.warns') }} ({{ $warnsCount }})</a></li>
             @endif
-      </ul>
-      </form>
+        </ul>
+        <form action="{{ route('litebans.search') }}" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" name="search">
+            <button class="btn btn-outline-primary btn-block" type="submit">Rechercher</button>
+        </form>
     </div>
   </div>
 </nav>

@@ -17,7 +17,7 @@ class LitebansHistoryController extends LitebansController
         $uuid = History::where('name', $name)->value('uuid');
 
         if ($uuid === null) {
-            return back()->with('error', "Cet utilisateur n'existe pas");
+            return $this->searchNotFound($name);
         }
 
         $user = [
@@ -34,7 +34,7 @@ class LitebansHistoryController extends LitebansController
         $uuid = History::where('name', $name)->value('uuid');
 
         if ($uuid === null) {
-            return back()->with('error', "Cet utilisateur n'existe pas");
+            return $this->searchNotFound($name);
         }
 
         $user = [
@@ -44,5 +44,12 @@ class LitebansHistoryController extends LitebansController
         ];
 
         return view('litebans::history', array_merge(History::getStaffHistory($uuid), $user));
+    }
+
+    public function searchNotFound(string $name) {
+        $history = History::where('name', 'like', "%$name%")->paginate(setting('litebans.perpage'));
+        if(empty($history))
+            return back()->with('error', "Cet utilisateur n'existe pas");
+        return view('litebans::search', [ "history" => $history ]);
     }
 }
