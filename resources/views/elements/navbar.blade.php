@@ -2,9 +2,9 @@
 
 <nav class="navbar navbar-expand-lg border rounded mb-4">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#litebansNavbar" aria-controls="litebansNavbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="litebansNavbar">
         <ul class="navbar-nav me-auto">
             <li class="nav-item {{ request()->routeIs('litebans.index') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.index') }}">{{ trans('litebans::messages.navigation.bans') }} ({{ $bansCount }})</a></li>
             @if(setting('litebans.mutes_enabled', true))
