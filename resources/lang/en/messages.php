@@ -13,7 +13,7 @@ return [
     'plugin_name' => 'Litebans / Punishments',
     'history' => 'History',
 
-    'username' => 'Pseudo',
+    'username' => 'Username',
     'staff_ban' => 'Ban by',
     'staff_mute' => 'Mute by',
     'staff_kick' => 'Kick by',
@@ -32,4 +32,5 @@ return [
 
     'given_punishments' => 'Given punishments',
     'staff' => 'Staff',
+    'target' => 'Target'
 ];

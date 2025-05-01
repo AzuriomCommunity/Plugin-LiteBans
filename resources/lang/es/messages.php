@@ -13,7 +13,7 @@ return [
     'plugin_name' => 'Litebans / Sanciones',
     'history' => 'Historial',
 
-    'username' => 'Pseudo',
+    'username' => 'Username',
     'staff_ban' => 'Baneado por',
     'staff_mute' => 'Silenciado por',
     'staff_kick' => 'Expulsado por',
@@ -32,4 +32,5 @@ return [
 
     'given_punishments' => 'Castigos impuestos',
     'staff' => 'Staff',
+    'target' => 'Target'
 ];

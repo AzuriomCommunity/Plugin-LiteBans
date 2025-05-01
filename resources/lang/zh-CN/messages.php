@@ -32,4 +32,5 @@ return [
 
     'given_punishments' => '给予处罚',
     'staff' => '工作人员',
+    'target' => 'Target'
 ];

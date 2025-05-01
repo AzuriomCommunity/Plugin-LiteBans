@@ -65,9 +65,9 @@
                     <thead>
                         <tr>
                             @if ($issued)
-                            <th scope="col">Cible</th>
+                            <th scope="col">{{ trans('litebans::messages.target') }}</th>
                             @else
-                            <th scope="col">Par</th>
+                            <th scope="col">{{ trans('litebans::messages.staff_ban') }}</th>
                             @endif
                             <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
                             <th scope="col">{{ trans('messages.fields.date') }}</th>
@@ -114,9 +114,9 @@
                     <thead>
                         <tr>
                             @if ($issued)
-                            <th scope="col">Cible</th>
+                            <th scope="col">{{ trans('litebans::messages.target') }}</th>
                             @else
-                            <th scope="col">Par</th>
+                            <th scope="col">{{ trans('litebans::messages.staff_mute') }}</th>
                             @endif
                             <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
                             <th scope="col">{{ trans('messages.fields.date') }}</th>
@@ -166,13 +166,12 @@
                     <thead>
                         <tr>
                             @if ($issued)
-                            <th scope="col">Cible</th>
+                            <th scope="col">{{ trans('litebans::messages.target') }}</th>
                             @else
-                            <th scope="col">Par</th>
+                            <th scope="col">{{ trans('litebans::messages.staff_kick') }}</th>
                             @endif
                             <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
                             <th scope="col">{{ trans('messages.fields.date') }}</th>
-                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.expires_at') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -195,7 +194,7 @@
                             </tr>
                         @empty
                             <tr class="text-nowrap">
-                                <td colspan="4">{{ trans('messages.none') }}</td>
+                                <td colspan="3">{{ trans('messages.none') }}</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -208,9 +207,9 @@
                     <thead>
                         <tr>
                             @if ($issued)
-                            <th scope="col">Cible</th>
+                            <th scope="col">{{ trans('litebans::messages.target') }}</th>
                             @else
-                            <th scope="col">Par</th>
+                            <th scope="col">{{ trans('litebans::messages.staff_warn') }}</th>
                             @endif
                             <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
                             <th scope="col">{{ trans('messages.fields.date') }}</th>

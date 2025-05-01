@@ -19,7 +19,7 @@
         </ul>
         <form action="{{ route('litebans.search') }}" class="d-flex" role="search">
             <input class="form-control me-2" type="search" name="search">
-            <button class="btn btn-outline-primary btn-block" type="submit">Rechercher</button>
+            <button class="btn btn-outline-primary btn-block" type="submit">{{ trans('messages.actions.search') }}</button>
         </form>
     </div>
   </div>

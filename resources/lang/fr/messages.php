@@ -32,4 +32,5 @@ return [
 
     'given_punishments' => 'Sanctions données',
     'staff' => 'Staff',
+    'target' => 'Cible'
 ];

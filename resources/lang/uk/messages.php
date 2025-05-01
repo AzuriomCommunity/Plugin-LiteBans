@@ -32,4 +32,5 @@ return [
 
     'given_punishments' => 'Дані покарання',
     'staff' => 'Персонал',
+    'target' => 'Target'
 ];
