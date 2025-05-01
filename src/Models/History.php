@@ -50,14 +50,20 @@ class History extends Model
     private static function getSpecificHistory(string $key, string $uuid) {
         $perPage = setting('litebans.perpage');
         return [
-            "bans" => Ban::where($key, $uuid)->paginate($perPage),
+            "bans" => Ban::where($key, $uuid)->paginate($perPage, ['*'], 'bans'),
             "bans_count" => Ban::where($key, $uuid)->count(),
-            "kicks" => Kick::where($key, $uuid)->paginate($perPage),
+            "kicks" => Kick::where($key, $uuid)->paginate($perPage, ['*'], 'kicks'),
             "kicks_count" => Kick::where($key, $uuid)->count(),
-            "mutes" => Mute::where($key, $uuid)->paginate($perPage),
+            "mutes" => Mute::where($key, $uuid)->paginate($perPage, ['*'], 'mutes'),
             "mutes_count" => Mute::where($key, $uuid)->count(),
             "warnings" => Warning::where($key, $uuid)->paginate($perPage),
-            "warnings_count" => Warning::where($key, $uuid)->count()
+            "warnings_count" => Warning::where($key, $uuid)->count(),
+            "counts" => [
+                "bans" => Ban::where($key, $uuid)->count(),
+                "kicks" => Kick::where($key, $uuid)->count(),
+                "mutes" => Mute::where($key, $uuid)->count(),
+                "warns" => Warning::where($key, $uuid)->count()
+            ]
         ];
     }
 }

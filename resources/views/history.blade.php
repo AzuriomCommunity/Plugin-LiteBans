@@ -27,34 +27,27 @@
 
                 <h5 class="text-center">{{ $name }}</h5>
 
-                <div class="buttons">
-                    <div class="btn-bans btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#bans"
-                        aria-expanded="true" aria-controls="bans">{{ trans('litebans::messages.navigation.bans') }}
-                        ({{ $bans_count }})
-                    </div>
-                    @if(setting('litebans.mutes_enabled', true))
-                    <div class="btn-mutes btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#mutes"
-                        aria-expanded="true" aria-controls="mutes">{{ trans('litebans::messages.navigation.mutes') }}
-                        ({{ $mutes_count }})
-                    </div>
+                <table>
+                    @foreach([ "bans", "mutes", "kicks", "warns" ] as $section)
+                    @if($section == "bans" || setting('litebans.' . $section . '_enabled', true))
+                    <tr>
+                        <td>{{ trans('litebans::messages.navigation.' . $section) }}</td>
+                        <td>{{ $counts[$section] }}</td>
+                    </tr>
                     @endif
-                    @if(setting('litebans.kicks_enabled', true))
-                    <div class="btn-kicks btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#kicks"
-                        aria-expanded="true" aria-controls="kicks">{{ trans('litebans::messages.navigation.kicks') }}
-                        ({{ $kicks_count }})
-                    </div>
-                    @endif
-                    @if(setting('litebans.warns_enabled', true))
-                    <div class="btn-mutes btn btn-outline-primary btn-block" data-toggle="collapse" data-target="#warns"
-                        aria-expanded="true" aria-controls="warns">{{ trans('litebans::messages.navigation.warns') }}
-                        ({{ $warnings_count }})
-                    </div>
-                    @endif
-                </div>
+                    @endforeach
+                </table>
             </div>
         </div>
 
         <div class="col-md-9 parent">
+            <ul class="nav nav-tabs">
+                @foreach([ "bans", "mutes", "kicks", "warns" ] as $section)
+                <li class="nav-item">
+                    <a data-bs-toggle="tab" class="nav-link @if($section == $selected) active @endif" href="#{{ $section }}">{{ trans('litebans::messages.navigation.' . $section) }} ({{ $counts[$section] }})</a>
+                </li>
+                @endforeach
+            </ul>
             @if ($issued)
                 <div>
                     <h3>{{ trans('litebans::messages.given_punishments') }} <span class="badge bg-success text-uppercase float-end">
@@ -67,11 +60,10 @@
                     {{ trans('litebans::messages.title') }}
                 </h3>
             @endif
-            <div class="bans collapse show" id="bans" data-parent=".parent">
+            <div class="bans collapse @if($selected == 'bans')show @endif" id="bans" data-parent=".parent">
                 <table class="table table-striped table-hover mt-4">
                     <thead>
                         <tr>
-                            <th scope="col">{{ trans('messages.fields.type') }}</th>
                             @if ($issued)
                             <th scope="col">Cible</th>
                             @else
@@ -85,9 +77,6 @@
                     <tbody>
                         @forelse ($bans as $item)
                             <tr class="text-nowrap">
-                                <td>
-                                    <span class="badge badge-danger text-uppercase">Ban</span>
-                                </td>
                                 @if ($issued)
                                 <td>
                                     <img src="https://mc-heads.net/avatar/{{ $item->name }}/25" alt="{{ $item->name }}">
@@ -112,10 +101,31 @@
                                 @endif
                             </tr>
                         @empty
+                            <tr class="text-nowrap">
+                                <td colspan="4">{{ trans('messages.none') }}</td>
+                            </tr>
                         @endforelse
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mutes collapse @if($selected == 'mutes')show @endif" id="mutes" data-parent=".parent">
+                <table class="table table-striped table-hover mt-4">
+                    <thead>
+                        <tr>
+                            @if ($issued)
+                            <th scope="col">Cible</th>
+                            @else
+                            <th scope="col">Par</th>
+                            @endif
+                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
+                            <th scope="col">{{ trans('messages.fields.date') }}</th>
+                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.expires_at') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @forelse ((setting('litebans.mutes_enabled', true) ? $mutes : []) as $item)
                             <tr class="text-nowrap">
-                                <td><span class="badge badge-warning text-uppercase">Mute</span></td>
                                 @if ($issued)
                                     <td>
                                         <img src="https://mc-heads.net/avatar/{{ $item->name }}/25" alt="{{ $item->name }}">
@@ -142,10 +152,32 @@
                                 @endif
                             </tr>
                         @empty
+                            <tr class="text-nowrap">
+                                <td colspan="4">{{ trans('messages.none') }}</td>
+                            </tr>
                         @endforelse
+                    </tbody>
+                </table>
+                {{ $mutes->withQueryString()->links() }}
+            </div>
+
+            <div class="kicks collapse @if($selected == 'kicks')show @endif" id="kicks" data-parent=".parent">
+                <table class="table table-striped table-hover mt-4">
+                    <thead>
+                        <tr>
+                            @if ($issued)
+                            <th scope="col">Cible</th>
+                            @else
+                            <th scope="col">Par</th>
+                            @endif
+                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
+                            <th scope="col">{{ trans('messages.fields.date') }}</th>
+                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.expires_at') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @forelse ((setting('litebans.kicks_enabled', true) ? $kicks : []) as $item)
                             <tr class="text-nowrap">
-                                <td><span class="badge badge-info">Kick</span></td>
                                 @if ($issued)
                                     <td>
                                         <img src="https://mc-heads.net/avatar/{{ $item->name }}/25" alt="{{ $item->name }}">
@@ -162,10 +194,32 @@
                                 <td>{{ format_date($item->time) }}</td>
                             </tr>
                         @empty
+                            <tr class="text-nowrap">
+                                <td colspan="4">{{ trans('messages.none') }}</td>
+                            </tr>
                         @endforelse
+                    </tbody>
+                </table>
+                {{ $kicks->withQueryString()->links() }}
+            </div>
+
+            <div class="warns collapse @if($selected == 'warns')show @endif" id="warns" data-parent=".parent">
+                <table class="table table-striped table-hover mt-4">
+                    <thead>
+                        <tr>
+                            @if ($issued)
+                            <th scope="col">Cible</th>
+                            @else
+                            <th scope="col">Par</th>
+                            @endif
+                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.reason') }}</th>
+                            <th scope="col">{{ trans('messages.fields.date') }}</th>
+                            <th scope="col" class="d-lg-table-cell">{{ trans('litebans::messages.expires_at') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                         @forelse ((setting('litebans.warns_enabled', true) ? $warnings : []) as $item)
                             <tr class="text-nowrap">
-                                <td><span class="badge badge-info text-uppercase">Warn</span></td>
                                 @if ($issued)
                                     <td>
                                         <img src="https://mc-heads.net/avatar/{{ $item->name }}/25" alt="{{ $item->name }}">
@@ -174,7 +228,7 @@
                                 @else
                                     <td>
                                         <img src="https://mc-heads.net/avatar/{{ $item->banned_by_name }}/25"
-                                             alt="{{ $item->banned_by_name }}">
+                                            alt="{{ $item->banned_by_name }}">
                                         {{ $item->banned_by_name }}
                                     </td>
                                 @endif
@@ -193,11 +247,14 @@
                                 @endif
                             </tr>
                         @empty
+                            <tr class="text-nowrap">
+                                <td colspan="4">{{ trans('messages.none') }}</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
+                {{ $warnings->withQueryString()->links() }}
             </div>
-
         </div>
     </div>
 
