@@ -16,11 +16,13 @@ use Azuriom\Plugin\Litebans\Models\History;
 |
 */
 
-Route::get('/', 'LitebansHomeController@index')->name('index');
-Route::get('/mutes', 'LitebansMuteController@index')->name('mute');
-Route::get('/kicks', 'LitebansKickController@index')->name('kick');
-Route::get('/warns', 'LitebansWarnController@index')->name('warn');
-Route::get('/joueur/{name}', 'LitebansHistoryController@index')->name('history');
-Route::get('/joueur/{name}/staff', 'LitebansHistoryController@issued')->name('history.issued');
-Route::get('/search', 'LitebansController@search')->name('search');
-Route::get('/mes-sanctions', 'LitebansController@profile')->name('profile');
+Route::middleware('auth')->group(function () {
+    Route::get('/', 'LitebansHomeController@index')->name('index');
+    Route::get('/mutes', 'LitebansMuteController@index')->name('mute');
+    Route::get('/kicks', 'LitebansKickController@index')->name('kick');
+    Route::get('/warns', 'LitebansWarnController@index')->name('warn');
+    Route::get('/joueur/{name}', 'LitebansHistoryController@index')->name('history');
+    Route::get('/joueur/{name}/staff', 'LitebansHistoryController@issued')->name('history.issued');
+    Route::get('/search', 'LitebansController@search')->name('search');
+    Route::get('/mes-sanctions', 'LitebansController@profile')->name('profile');
+});
