@@ -7,7 +7,6 @@ use Azuriom\Plugin\Litebans\Models\Ban;
 use Azuriom\Plugin\Litebans\Models\Kick;
 use Azuriom\Plugin\Litebans\Models\Mute;
 use Azuriom\Plugin\Litebans\Models\Warning;
-use Azuriom\Plugin\Litebans\Models\History;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;

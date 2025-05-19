@@ -1,6 +1,5 @@
 <?php
 
-use Azuriom\Plugin\Litebans\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
