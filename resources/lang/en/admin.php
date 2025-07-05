@@ -9,6 +9,16 @@ return [
 
     'permission' => 'View and modify Litebans plugin settings',
 
+
+    'permission' => [
+        "all" => 'View and modify Litebans plugin settings',
+        "bans" => "Litebans - See bans",
+        "mutes" => "Litebans - See mutes",
+        "kicks" => "Litebans - See kicks",
+        "warn" => "Litebans - See warns",
+        "player" => "Litebans - See others players"
+    ],
+
     'settings' => [
         'title' => 'LiteBans plugin settings',
         'database-connect' => 'Database connection',

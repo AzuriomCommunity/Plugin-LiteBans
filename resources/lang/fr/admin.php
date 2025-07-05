@@ -7,7 +7,14 @@ return [
         'settings' => 'Paramètres',
     ],
 
-    'permission' => 'Voir et modifier les paramètres du plugin LiteBans',
+    'permission' => [
+        "all" => 'Voir et modifier les paramètres du plugin LiteBans',
+        "bans" => "Litebans - Voir les bannissements",
+        "mutes" => "Litebans - Voir les mutes",
+        "kicks" => "Litebans - Voir les exclusions",
+        "warn" => "Litebans - Voir les avertissements",
+        "player" => "Litebans - Voir les autres joueurs"
+    ],
 
     'settings' => [
         'title' => 'Paramètres du plugin LiteBans',

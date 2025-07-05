@@ -45,7 +45,13 @@ class LitebansServiceProvider extends BasePluginServiceProvider
         Paginator::useBootstrap();
 
         Permission::registerPermissions([
-            'litebans.admin' => 'litebans::admin.permission',
+            'litebans.admin' => 'litebans::admin.permission.all',
+            'litebans.bans' => 'litebans::admin.permission.bans',
+            'litebans.mutes' => 'litebans::admin.permission.mutes',
+            'litebans.kicks' => 'litebans::admin.permission.kicks',
+            'litebans.warns' => 'litebans::admin.permission.warn',
+            'litebans.player' => 'litebans::admin.permission.player',
+            'litebans.own' => 'litebans::admin.permission.own'
         ]);
     }
 

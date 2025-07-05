@@ -6,21 +6,25 @@
     </button>
     <div class="collapse navbar-collapse" id="litebansNavbar">
         <ul class="navbar-nav me-auto">
+            @if(auth()->user()->can('litebans.bans'))
             <li class="nav-item {{ request()->routeIs('litebans.index') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.index') }}">{{ trans('litebans::messages.navigation.bans') }} ({{ $bansCount }})</a></li>
-            @if(setting('litebans.mutes_enabled', true))
+            @endif
+            @if(setting('litebans.mutes_enabled', true) && auth()->user()->can('litebans.mutes'))
             <li class="nav-item {{ request()->routeIs('litebans.mute') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.mute') }}">{{ trans('litebans::messages.navigation.mutes') }} ({{ $mutesCount }})</a></li>
             @endif
-            @if(setting('litebans.kicks_enabled', true))
+            @if(setting('litebans.kicks_enabled', true) && auth()->user()->can('litebans.kicks'))
             <li class="nav-item {{ request()->routeIs('litebans.kick') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.kick') }}">{{ trans('litebans::messages.navigation.kicks') }} ({{ $kicksCount }})</a></li>
             @endif
-            @if(setting('litebans.warns_enabled', true))
+            @if(setting('litebans.warns_enabled', true) && auth()->user()->can('litebans.warns'))
             <li class="nav-item {{ request()->routeIs('litebans.warn') ? 'active' : ''}}"><a class="nav-link" href="{{ route('litebans.warn') }}">{{ trans('litebans::messages.navigation.warns') }} ({{ $warnsCount }})</a></li>
             @endif
         </ul>
+        @if(auth()->user()->can('litebans.player'))
         <form action="{{ route('litebans.search') }}" class="d-flex" role="search">
             <input class="form-control me-2" type="search" name="search">
             <button class="btn btn-outline-primary btn-block" type="submit">{{ trans('messages.actions.search') }}</button>
         </form>
+        @endif
     </div>
   </div>
 </nav>

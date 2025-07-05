@@ -7,7 +7,14 @@ return [
         'settings' => '设置',
     ],
 
-    'permission' => '查看和修改 Litebans 插件设置',
+    'permission' => [
+        "all" => '查看和修改 Litebans 插件设置',
+        "bans" => "Litebans - See bans",
+        "mutes" => "Litebans - See mutes",
+        "kicks" => "Litebans - See kicks",
+        "warn" => "Litebans - See warns",
+        "player" => "Litebans - See others players"
+    ],
 
     'settings' => [
         'title' => 'LiteBans 插件设置',

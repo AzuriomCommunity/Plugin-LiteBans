@@ -7,7 +7,14 @@ return [
         'settings' => 'Configuración',
     ],
 
-    'permission' => 'Ver y modificar la configuración de Litebans',
+    'permission' => [
+        "all" => 'Ver y modificar la configuración de Litebans',
+        "bans" => "Litebans - See bans",
+        "mutes" => "Litebans - See mutes",
+        "kicks" => "Litebans - See kicks",
+        "warn" => "Litebans - See warns",
+        "player" => "Litebans - See others players"
+    ],
 
     'settings' => [
         'title' => 'Configuración del plugin Litebans',

@@ -7,7 +7,14 @@ return [
         'settings' => 'Налаштування',
     ],
 
-    'permission' => 'Переглядайте та змінюйте налаштування плагіна Litebans',
+    'permission' => [
+        "all" => 'Переглядайте та змінюйте налаштування плагіна Litebans',
+        "bans" => "Litebans - See bans",
+        "mutes" => "Litebans - See mutes",
+        "kicks" => "Litebans - See kicks",
+        "warn" => "Litebans - See warns",
+        "player" => "Litebans - See others players"
+    ],
 
     'settings' => [
         'title' => 'Налаштування плагіна LiteBans',
